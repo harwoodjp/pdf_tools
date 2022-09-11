@@ -1,16 +1,16 @@
 from typing import List
 
-import ghostscript
-from subprocess import run, DEVNULL, PIPE
+import ghostscript # type: ignore
+from subprocess import CompletedProcess, run, DEVNULL, PIPE
 
 
-def execute(args: List[str], verbose: bool) -> bool:
+def execute(args: List[str], verbose: bool) -> int:
     if len(args) < 1:
         raise Exception("Insufficient arguments provided")
 
-    file = args[0]
-    command = f"gs -o /dev/null -sDEVICE=nullpage -dBATCH -dNOPAUSE {file}"
-    result = run(command, shell=True, stdout=PIPE, stderr=PIPE)
+    file: str = args[0]
+    command: str = f"gs -o /dev/null -sDEVICE=nullpage -dBATCH -dNOPAUSE {file}"
+    result: CompletedProcess = run(command, shell=True, stdout=PIPE, stderr=PIPE)
 
     if result.returncode == 0:
         print("Valid PDF")
