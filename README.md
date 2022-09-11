@@ -3,7 +3,7 @@ Wrapping Ghostscript + other things for scriptable PDF convenience
 Done
 
 * `pdf_tools verify in.pdf`
-* `pdf_tools split in.pdf out_dir jpg|pdf`
+* `pdf_tools split in.pdf out_dir png|pdf`
 
 Todo
 
