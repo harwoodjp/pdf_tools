@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  pdf_tools: &pdf_tools
+    image: python:3.10-slim
+    container_name: pdf_tools
+    working_dir: /pdf_tools
+    command: bash -c "sh bin/install.sh && tail -f /dev/null"
+    volumes:
+      - ./:/pdf_tools
+  tests:
+    <<: *pdf_tools    
+    container_name: pdf_tools_tests
+    command: bash -c "sh bin/install.sh && pip3 install -r requirements-dev.txt && pytest tests/"
+    volumes:
+      - ./:/pdf_tools
